@@ -221,7 +221,74 @@ FibPrimoPar(10)
  * - Ejemplo. Entrada: [("🗿","✂️"), ("✂️","🗿"), ("📄","✂️")]. Resultado: "Player 2".
  * - Debes buscar información sobre cómo se juega con estas 5 posibilidades.
  */
-
+/* El propio Sheldon la explicaba así:
+ "Tijera corta a papel,("✂️","📄")="✂️"
+  papel tapa a piedra,("📄","🗿")="📄"
+   piedra aplasta a lagarto,("🗿","🦎")="🗿"
+  lagarto envenena a Spock,("🦎","🖖")="🦎"
+   Spock rompe a tijera,("🖖","✂️")="🖖"
+  tijera decapita a lagarto, ("✂️","🦎")="✂️"
+  lagarto devora a papel,("🦎","📄")="🦎"
+   papel desautoriza a Spock,("📄","🖖")="📄"
+  Spock vaporiza a piedra,("🖖","🗿")="🖖"
+   y como siempre, piedra aplasta a tijera"("🗿","✂️")="🗿"
+    */
+let obj6={
+  piedra:{
+    piedra:0,
+    papel:0,
+    tijera:1,
+    lagarto:1,
+    spock:0
+  },
+  papel:{
+    piedra:1,
+    papel:0,
+    tijera:0,
+    lagarto:0,
+    spock:1
+  },
+  tijera:{
+    piedra:0,
+    papel:1,
+    tijera:0,
+    lagarto:1,
+    spock:0
+  },
+  lagarto:{
+    piedra:0,
+    papel:1,
+    tijera:0,
+    lagarto:0,
+    spock:1
+  },
+  spock:{
+    piedra:1,
+    papel:0,
+    tijera:1,
+    lagarto:0,
+    spock:0
+  }
+}
+let player1=0;
+let player2=0;
+let aux=0;
+const juego=(array)=>{
+for(let i=1;i<array.length;i++){
+  player1+=obj6[array[aux]][array[i]]
+  player2+=obj6[array[i]][array[aux]]
+  aux+=2
+  i++
+}
+if(player1===player2){
+  console.log("Empate")
+}else if(player1>player2){
+  console.log("Player 1")
+}else{
+  console.log("Player 2")
+}
+}
+juego(["piedra","lagarto" , "tijera", "papel", "papel" ,"tijera"])
 /* #7
  * Crea un programa que simule el comportamiento del sombrero selccionador del
  * universo mágico de Harry Potter.
@@ -231,6 +298,7 @@ FibPrimoPar(10)
  *   coloque al alumno en una de las 4 casas de Hogwarts (Gryffindor, Slytherin , Hufflepuff y Ravenclaw)
  * - Ten en cuenta los rasgos de cada casa para hacer las preguntas y crear el algoritmo seleccionador.
  *   Por ejemplo, en Slytherin se premia la ambición y la astucia.
+ * server/index.js
  */
 /* #8
  * Crea un generador de números pseudoaleatorios entre 0 y 100.
